@@ -15,6 +15,12 @@ Vagrant.configure("2") do |config|
   # use an ubuntu lts box as a base
   config.vm.box = "ubuntu/xenial64"
 
+  # specify the resources for the vm
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2560
+    v.cpus = 2
+  end
+
   # provision docker inside the vm
   config.vm.provision "docker"
 
