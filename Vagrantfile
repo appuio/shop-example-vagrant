@@ -13,15 +13,12 @@ SCRIPT
 Vagrant.configure("2") do |config|
 
   # use an ubuntu lts box as a base
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/yakkety64"
 
   # specify the resources for the vm
   config.vm.provider "virtualbox" do |v|
     v.memory = 2560
     v.cpus = 2
-    
-    # fix for slow docker builds: don't use the intel NAT
-    v.customize ["modifyvm", :id, "--nictype1", "virtio"]
   end
 
   # provision docker inside the vm
@@ -32,5 +29,8 @@ Vagrant.configure("2") do |config|
 
   # expose the folder with git projects inside the vm
   config.vm.synced_folder "C:/Users/rolan/Documents/Git/VSHN", "/opt/git"
+
+  # enable a private network for the vm
+  config.vm.network "private_network", type: "dhcp"
 
 end
