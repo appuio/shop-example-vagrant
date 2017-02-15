@@ -19,6 +19,9 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |v|
     v.memory = 2560
     v.cpus = 2
+    
+    # fix for slow docker builds: don't use the intel NAT
+    v.customize ["modifyvm", :id, "--nictype1", "virtio"]
   end
 
   # provision docker inside the vm
