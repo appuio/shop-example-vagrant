@@ -2,11 +2,12 @@
 $script = <<SCRIPT
 wget https://github.com/openshift/source-to-image/releases/download/v1.1.4/source-to-image-1.1.4-870b273-linux-amd64.tar.gz
 wget https://github.com/openshift/origin/releases/download/v1.4.1/openshift-origin-client-tools-v1.4.1-3f9807a-linux-64bit.tar.gz
-tar -xzvf source-to-image-1.1.4-870b273-linux-amd64.tar.gz -C .
-tar -xzvf openshift-origin-client-tools-v1.4.1-3f9807a-linux-64bit.tar.gz -C .
-mv openshift-origin-client-tools-v1.4.1+3f9807a-linux-64bit/oc /usr/local/bin/
-mv s2i /usr/local/bin/
-rm -rf *.tar.gz openshift-origin-client-tools-v1.4.1+3f9807a-linux-64bit sti
+mkdir untar
+tar -xzvf source-to-image-1.1.4-870b273-linux-amd64.tar.gz -C untar/
+tar -xzvf openshift-origin-client-tools-v1.4.1-3f9807a-linux-64bit.tar.gz -C untar/
+mv untar/openshift-origin-client-tools-v1.4.1+3f9807a-linux-64bit/oc /usr/local/bin/
+mv untar/s2i /usr/local/bin/
+rm -rf *.tar.gz untar
 SCRIPT
 
 Vagrant.configure("2") do |config|
