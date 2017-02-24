@@ -5,12 +5,12 @@ wget https://github.com/openshift/origin/releases/download/v1.3.3/openshift-orig
 mkdir untar
 tar -xzvf source-to-image-1.1.4-870b273-linux-amd64.tar.gz -C untar/
 tar --strip-components=1 -xzvf openshift-origin-client-tools-v1.3.3-bc17c1527938fa03b719e1a117d584442e3727b8-linux-64bit.tar.gz -C untar/
-mv untar/oc /usr/local/bin/
-mv untar/s2i /usr/local/bin/
+mv untar/oc /usr/local/bin/ && mv untar/s2i /usr/local/bin/
 rm -rf *.tar.gz untar
-wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
-dpkg -i erlang-solutions_1.0_all.deb
-apt-get update && apt-get install -y esl-erlang elixir
+wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && dpkg -i erlang-solutions_1.0_all.deb
+apt-get update && apt-get install -y python esl-erlang elixir software-properties-common
+apt-add-repository ppa:ansible/ansible
+apt-get update && apt-get install -y ansible
 SCRIPT
 
 Vagrant.configure("2") do |config|
@@ -32,6 +32,9 @@ Vagrant.configure("2") do |config|
 
   # expose the folder with git projects inside the vm
   config.vm.synced_folder "C:/Users/rolan/Documents/Git/VSHN", "/opt/git"
+
+  # expose ssh keys inside the vm
+  config.vm.synced_folder "C:/Users/rolan/.ssh", "/root/ssh"
 
   # enable a private network for the vm
   config.vm.network "private_network", type: "dhcp"
