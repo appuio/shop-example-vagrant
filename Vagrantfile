@@ -8,6 +8,9 @@ tar --strip-components=1 -xzvf openshift-origin-client-tools-v1.3.3-bc17c1527938
 mv untar/oc /usr/local/bin/
 mv untar/s2i /usr/local/bin/
 rm -rf *.tar.gz untar
+wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
+dpkg -i erlang-solutions_1.0_all.deb
+apt-get update && apt-get install esl-erlang && apt-get install elixir
 SCRIPT
 
 Vagrant.configure("2") do |config|
