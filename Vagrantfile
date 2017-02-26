@@ -33,9 +33,6 @@ Vagrant.configure("2") do |config|
   # expose the folder with git projects inside the vm
   config.vm.synced_folder "C:/Users/rolan/Documents/Git/VSHN", "/opt/git"
 
-  # expose ssh keys inside the vm
-  config.vm.synced_folder "C:/Users/rolan/.ssh", "/root/ssh"
-
   # enable a private network for the vm
   config.vm.network "private_network", type: "dhcp"
 
