@@ -7,10 +7,9 @@ tar -xzvf source-to-image-1.1.4-870b273-linux-amd64.tar.gz -C untar/
 tar --strip-components=1 -xzvf openshift-origin-client-tools-v1.3.3-bc17c1527938fa03b719e1a117d584442e3727b8-linux-64bit.tar.gz -C untar/
 mv untar/oc /usr/local/bin/ && mv untar/s2i /usr/local/bin/
 rm -rf *.tar.gz untar
-wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && dpkg -i erlang-solutions_1.0_all.deb
-apt-get update && apt-get install -y python esl-erlang elixir software-properties-common
+wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && dpkg -i erlang-solutions_1.0_all.deb && rm -f erlang-solutions_1.0_all.deb
 apt-add-repository ppa:ansible/ansible
-apt-get update && apt-get install -y ansible
+apt-get update && apt-get install -y ansible build-essential elixir esl-erlang python software-properties-common
 SCRIPT
 
 Vagrant.configure("2") do |config|
