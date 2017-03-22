@@ -31,7 +31,8 @@ Vagrant.configure("2") do |config|
 
   # expose the folder with git projects inside the vm
   config.vm.synced_folder "C:/Users/rolan/Documents/Git/VSHN", "/opt/git"
-
+  config.vm.synced_folder "C:/Users/rolan/Documents/Vagrant", "/opt/share"
+  
   # enable a private network for the vm
   config.vm.network "private_network", type: "dhcp"
 
