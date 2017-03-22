@@ -32,6 +32,7 @@ apt-get install -y \
       python \
       software-properties-common
 usermod -aG docker ubuntu
+echo DOCKER_OPTS="--insecure-registry 172.30.0.0/16" >> /etc/default/docker
 set +x
 SCRIPT
 
