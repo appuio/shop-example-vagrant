@@ -19,21 +19,21 @@ apt-key adv \
 echo "deb https://apt.dockerproject.org/repo ubuntu-yakkety main" | sudo tee /etc/apt/sources.list.d/docker.list
 apt-get update
 apt-get install -y \
-      ansible \
-      apt-transport-https \
-      build-essential \
-      ca-certificates \
-      curl \
-      docker-engine=1.13.1-0~ubuntu-yakkety \
-      elixir \
-      esl-erlang \
-      linux-image-extra-$(uname -r) \
-      linux-image-extra-virtual \
-      python \
-      software-properties-common
+  ansible \
+  apt-transport-https \
+  build-essential \
+  ca-certificates \
+  curl \
+  docker-engine=1.13.1-0~ubuntu-yakkety \
+  elixir \
+  esl-erlang \
+  linux-image-extra-$(uname -r) \
+  linux-image-extra-virtual \
+  python \
+  software-properties-common
 usermod -aG docker ubuntu
 apt-mark hold docker-engine
-echo DOCKER_OPTS="--insecure-registry 172.30.0.0/16" >> /etc/default/docker
+echo '{ "insecure-registries": [ "172.30.0.0/16" ] }' >> /etc/docker/daemon.json
 set +x
 SCRIPT
 
