@@ -34,6 +34,9 @@ apt-get install -y \
 usermod -aG docker ubuntu
 apt-mark hold docker-engine
 echo '{ "insecure-registries": [ "172.30.0.0/16" ] }' >> /etc/docker/daemon.json
+systemctl enable docker
+ln -s /opt/git /home/ubuntu/git
+ln -s /opt/share /home/ubuntu/share
 set +x
 SCRIPT
 
