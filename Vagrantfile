@@ -33,9 +33,9 @@ apt-get install -y \
   software-properties-common
 apt-mark hold docker-engine \
   && usermod -aG docker ubuntu \
-  && echo '{ "insecure-registries": [ "172.30.0.0/16", "172.17.0.0/16", "172.28.128.3/24"] }' >> /etc/docker/daemon.json
-  && systemctl enable docker
-  && curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  && echo '{ "insecure-registries": [ "172.30.0.0/16", "172.17.0.0/16", "172.28.128.3/24"] }' >> /etc/docker/daemon.json \
+  && systemctl enable docker \
+  && curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
   && chmod +x /usr/local/bin/docker-compose
 ln -s /opt/git /home/ubuntu/git
 ln -s /opt/share /home/ubuntu/share
