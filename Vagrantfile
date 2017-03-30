@@ -17,6 +17,9 @@ apt-key adv \
   --keyserver hkp://ha.pool.sks-keyservers.net:80 \
   --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 echo "deb https://apt.dockerproject.org/repo ubuntu-yakkety main" | sudo tee /etc/apt/sources.list.d/docker.list
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - \
+  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
+  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 apt-get update
 apt-get install -y \
   ansible \
@@ -29,8 +32,10 @@ apt-get install -y \
   esl-erlang \
   linux-image-extra-$(uname -r) \
   linux-image-extra-virtual \
+  nodejs \
   python \
-  software-properties-common
+  software-properties-common \
+  yarn
 apt-mark hold docker-engine \
   && usermod -aG docker ubuntu \
   && echo '{ "insecure-registries": [ "172.30.0.0/16", "172.17.0.0/16", "172.28.128.3/24"] }' >> /etc/docker/daemon.json \
