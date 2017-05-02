@@ -46,7 +46,7 @@ apt-get install -y \
   build-essential \
   ca-certificates \
   curl \
-  docker-engine=$dockerVersion \
+  docker-engine=$(dockerVersion) \
   elixir \
   esl-erlang \
   linux-image-extra-$(uname -r) \
