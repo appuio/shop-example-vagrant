@@ -20,11 +20,11 @@ $insecureRegistries = '{ "insecure-registries": [ "172.30.0.0/16", "172.17.0.0/1
 # provisioning script for setting up s2i and openshift cli
 $script = <<SCRIPT
 set -x
-wget https://github.com/openshift/source-to-image/releases/download/$stiVersion/$stiRelease \
-  && wget https://github.com/openshift/origin/releases/download/$ocVersion/$ocRelease \
+wget https://github.com/openshift/source-to-image/releases/download/${stiVersion}/${stiRelease} \
+  && wget https://github.com/openshift/origin/releases/download/${ocVersion}/${ocRelease} \
   && mkdir untar \
-  && tar -xzvf $stiRelease -C untar/ \
-  && tar --strip-components=1 -xzvf $ocRelease -C untar/ \
+  && tar -xzvf ${stiRelease} -C untar/ \
+  && tar --strip-components=1 -xzvf ${ocRelease} -C untar/ \
   && mv untar/oc /usr/local/bin/ \
   && mv untar/s2i /usr/local/bin/ \
   && rm -rf *.tar.gz untar
@@ -46,7 +46,7 @@ apt-get install -y \
   build-essential \
   ca-certificates \
   curl \
-  docker-engine=$(dockerVersion) \
+  docker-engine=${dockerVersion} \
   elixir \
   esl-erlang \
   linux-image-extra-$(uname -r) \
@@ -59,7 +59,7 @@ apt-mark hold docker-engine \
   && usermod -aG docker ubuntu \
   && echo $insecureRegistries >> /etc/docker/daemon.json \
   && systemctl enable docker \
-  && curl -L "https://github.com/docker/compose/releases/download/$composeVersion/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
+  && curl -L "https://github.com/docker/compose/releases/download/${composeVersion}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
   && chmod +x /usr/local/bin/docker-compose
 ln -s /opt/git /home/ubuntu/git
 ln -s /opt/share /home/ubuntu/share
