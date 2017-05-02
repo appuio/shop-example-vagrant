@@ -1,22 +1,22 @@
+# PARAM: path where the shop-example repository is located
+$gitFolder = "C:/Users/rolan/Documents/Git/VSHN"
+
+# PARAM: additional shares
+$shareFolder = "C:/Users/rolan/Documents/Vagrant"
+
 # provisioning script for setting up s2i and openshift cli
 $script = <<SCRIPT
 set -x
 
-# path where the shop-example repository is located
-export gitFolder="C:/Users/rolan/Documents/Git/VSHN"
-
-# additional shares
-export shareFolder="C:/Users/rolan/Documents/Vagrant"
-
-# S2I
+# PARAM: S2I
 export stiVersion="v1.1.5"
 export stiRelease="source-to-image-v1.1.5-4dd7721-linux-amd64.tar.gz"
 
-# OC cli
+# PARAM: OC cli
 export ocVersion="v1.4.1"
 export ocRelease="openshift-origin-client-tools-v1.4.1-3f9807a-linux-64bit.tar.gz"
 
-# docker
+# PARAM: docker
 export dockerVersion="1.13.1-0~ubuntu-yakkety"
 export composeVersion="1.11.2"
 export insecureRegistries='{ "insecure-registries": [ "172.30.0.0/16", "172.17.0.0/16", "172.28.128.3/24"] }'
