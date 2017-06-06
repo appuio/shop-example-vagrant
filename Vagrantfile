@@ -2,7 +2,7 @@
 $gitFolder = "C:/Users/rolan/Documents/Git/VSHN"
 
 # PARAM: additional shares
-$shareFolder = "C:/Users/rolan/Documents/Vagrant"
+# $shareFolder = "C:/Users/rolan/Documents/Vagrant"
 
 # provisioning script for setting up s2i and openshift cli
 $script = <<SCRIPT
@@ -77,9 +77,6 @@ Vagrant.configure("2") do |config|
     v.memory = 3072
     v.cpus = 2
   end
-
-  # provision docker inside the vm
-  # config.vm.provision "docker"
 
   # provision the script inside the vm (as defined above)
   config.vm.provision "shell", inline: $script
